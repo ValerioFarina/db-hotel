@@ -8,3 +8,10 @@ WHERE document_type = 'CI';
 SELECT *
 FROM `ospiti`
 WHERE YEAR(date_of_birth) > 1988;
+
+/* Seleziona tutti gli ospiti che hanno più di 20 anni (al momento dell’esecuzione della query) */
+SELECT *
+FROM `ospiti`
+WHERE YEAR(CURRENT_DATE()) - YEAR(date_of_birth) > 21
+OR (YEAR(CURRENT_DATE()) - YEAR(date_of_birth) = 21
+AND DATE_FORMAT(date_of_birth, "%m-%d") < DATE_FORMAT(CURRENT_DATE(), "%m-%d"));
