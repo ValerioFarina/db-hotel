@@ -47,3 +47,8 @@ AND YEAR(date_of_birth) = 1975;
 SELECT *
 FROM `paganti`
 WHERE ospite_id IS NOT NULL;
+
+
+*/ Quanti posti letto ha l’hotel in totale? */
+SELECT SUM(beds)
+FROM `stanze`;
