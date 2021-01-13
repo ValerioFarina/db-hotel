@@ -22,3 +22,9 @@ AND DATE_FORMAT(date_of_birth, "%m-%d") <= DATE_FORMAT(CURRENT_DATE(), "%m-%d"))
 SELECT *
 FROM `ospiti`
 WHERE name LIKE 'D%';
+
+
+/*  Calcola il totale degli ordini accepted */
+SELECT SUM(price)
+FROM `pagamenti`
+WHERE status = 'accepted';
