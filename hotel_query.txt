@@ -28,3 +28,9 @@ WHERE name LIKE 'D%';
 SELECT SUM(price)
 FROM `pagamenti`
 WHERE status = 'accepted';
+
+
+/* Qual è il prezzo massimo pagato? */
+SELECT MAX(price)
+FROM `pagamenti`
+WHERE status = 'accepted';
