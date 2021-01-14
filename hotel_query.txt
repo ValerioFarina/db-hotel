@@ -107,3 +107,11 @@ FROM `pagamenti`
 JOIN `paganti`
 ON `pagamenti`.`pagante_id` = `paganti`.`id`
 WHERE `pagamenti`.`prenotazione_id` = 7;
+
+
+/* Le stanze sono state tutte prenotate almeno una volta?(Visualizzare le stanze non ancora prenotate) */
+SELECT `stanze`.`id`, `stanze`.`room_number`, `stanze`.`floor`
+FROM `stanze`
+LEFT JOIN `prenotazioni`
+ON `stanze`.`id` = `prenotazioni`.`stanza_id`
+WHERE `prenotazioni`.`stanza_id` IS NULL;
