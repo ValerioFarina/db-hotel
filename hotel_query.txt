@@ -78,7 +78,7 @@ ON `prenotazioni`.`stanza_id` = `stanze`.`id`
 GROUP BY `stanze`.`room_number`;
 
 
-/* Fai una analisi per vedere se ci sono ore in cui leprenotazioni sonopiù frequenti */
+/* Fai una analisi per vedere se ci sono ore in cui le prenotazioni sono più frequenti */
 SELECT HOUR(`created_at`) AS `ora`, COUNT(*) AS `numero_prenotazioni`
 FROM `prenotazioni`
 GROUP BY HOUR(`created_at`)
@@ -89,3 +89,13 @@ ORDER BY `numero_prenotazioni` DESC;
 SELECT `prenotazione_id`, GROUP_CONCAT(`ospite_id`) AS `elenco_ospiti`
 FROM `prenotazioni_has_ospiti`
 GROUP BY `prenotazione_id`;
+
+
+*/ Fai la somma di tutti i prezzi delle prenotazioni per le stanze del primo piano */
+SELECT SUM(`pagamenti`.`price`) AS `prezzo_totale_primo_piano`
+FROM `stanze`
+JOIN `prenotazioni`
+ON `stanze`.`id` = `prenotazioni`.`stanza_id`
+JOIN `pagamenti`
+ON `prenotazioni`.`id` = `pagamenti`.`prenotazione_id`
+WHERE `pagamenti`.`status` = 'accepted' AND `stanze`.`floor` = 1;
