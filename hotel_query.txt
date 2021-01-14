@@ -111,7 +111,18 @@ SELECT COUNT(*) AS `numero_prenotazioni_max`
 FROM `prenotazioni_has_ospiti`
 GROUP BY `ospite_id`
 ORDER BY `numero_prenotazioni_max` DESC
-LIMIT 1
+LIMIT 1;
+
+
+
+QUERY 15
+/* Come si chiamano gli ospiti che hanno fatto più di due prenotazioni? */
+SELECT `ospiti`.`name`, `ospiti`.`lastname`, COUNT(*) AS `numero_prenotazioni`
+FROM `ospiti`
+JOIN `prenotazioni_has_ospiti`
+ON `ospiti`.`id` = `prenotazioni_has_ospiti`.`ospite_id`
+GROUP BY `prenotazioni_has_ospiti`.`ospite_id`
+HAVING `numero_prenotazioni` > 2;
 
 
 
