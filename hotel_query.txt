@@ -99,3 +99,11 @@ ON `stanze`.`id` = `prenotazioni`.`stanza_id`
 JOIN `pagamenti`
 ON `prenotazioni`.`id` = `pagamenti`.`prenotazione_id`
 WHERE `pagamenti`.`status` = 'accepted' AND `stanze`.`floor` = 1;
+
+
+/* Prendi i dati di fatturazione per la prenotazione con id=7 */
+SELECT `pagamenti`.`prenotazione_id`, `paganti`.`name`, `paganti`.`lastname`, `paganti`.`address`, `pagamenti`.`price`
+FROM `pagamenti`
+JOIN `paganti`
+ON `pagamenti`.`pagante_id` = `paganti`.`id`
+WHERE `pagamenti`.`prenotazione_id` = 7;
