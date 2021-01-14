@@ -56,3 +56,9 @@ FROM `stanze`;
 SELECT COUNT(*) AS `numero_ospiti`, YEAR(`date_of_birth`) AS `anno_di_nascita`
 FROM `ospiti`
 GROUP BY YEAR(`date_of_birth`);
+
+
+/* Somma i prezzi dei pagamenti raggruppandoli per status */
+SELECT `status`, SUM(`price`) AS `somma_prezzi`
+FROM `pagamenti`
+GROUP BY `status`;
