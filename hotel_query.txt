@@ -76,3 +76,10 @@ FROM `stanze`
 LEFT JOIN `prenotazioni`
 ON `prenotazioni`.`stanza_id` = `stanze`.`id`
 GROUP BY `stanze`.`room_number`
+
+
+/* Fai una analisi per vedere se ci sono ore in cui leprenotazioni sonopiù frequenti */
+SELECT HOUR(`created_at`) AS `ora`, COUNT(*) AS `numero_prenotazioni`
+FROM `prenotazioni`
+GROUP BY HOUR(`created_at`)
+ORDER BY `numero_prenotazioni` DESC
